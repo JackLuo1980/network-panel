@@ -194,6 +194,7 @@ type SwaggerTunnelIDReq struct {
 type SwaggerTunnelPathSetReq struct {
 	TunnelID int64   `json:"tunnelId" example:"1"`
 	Path     []int64 `json:"path" swaggertype:"array,integer" example:"2,3"`
+	LinkModes []string `json:"linkModes" swaggertype:"array,string" example:"direct,tunnel"`
 }
 
 type SwaggerTunnelBindReq struct {
@@ -244,9 +245,12 @@ type SwaggerNodeUpdateReq = dto.NodeUpdateDto
 
 type SwaggerNodeExitReq struct {
 	NodeID    int64    `json:"nodeId" example:"1"`
+	Type      string   `json:"type" example:"ss"`
 	Port      int      `json:"port" example:"10000"`
 	Password  string   `json:"password" example:"pass"`
 	Method    string   `json:"method" example:"AEAD_CHACHA20_POLY1305"`
+	ExitIP    string   `json:"exitIp,omitempty" example:"1.2.3.4"`
+	AllowFallback *bool `json:"allowFallback,omitempty" example:"true"`
 	Observer  *string  `json:"observer" example:"console"`
 	Limiter   *string  `json:"limiter" example:"5mbps"`
 	RLimiter  *string  `json:"rlimiter" example:""`
